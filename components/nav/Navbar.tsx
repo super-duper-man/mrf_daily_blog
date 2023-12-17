@@ -1,8 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import LoginForm from "./LoginForm";
+import { useUser } from "@/lib/store/user";
 
 export default function Navbar() {
+  const user = useUser((state) => state.user);
+
   return (
     <nav className="flex items-center justify-between">
       <div className="group">
@@ -12,7 +17,7 @@ export default function Navbar() {
 
         <div className="h-1 w-0 group-hover:w-full transition-all bg-green-500"></div>
       </div>
-      <LoginForm />
+      {user ? <h1>profile</h1> : <LoginForm />}
     </nav>
   );
 }
